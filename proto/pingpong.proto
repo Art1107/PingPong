@@ -1,0 +1,83 @@
+// pingpong.proto
+syntax = "proto3";
+
+package pingpong;
+option go_package = "pingpong/proto";
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+service PlayerService {
+  rpc StartNewMatch(NewMatchRequest) returns (NewMatchResponse);
+  rpc PlayerAPing(PingRequest) returns (PingResponse);
+  rpc PlayerBPing(PingRequest) returns (PingResponse);
+  rpc GetMatch(GetMatchRequest) returns (Match);
+  rpc GetMatchByID(GetMatchByIDRequest) returns (Match);
+  rpc TestDB(TestDBRequest) returns (TestDBResponse);
+  rpc IsGameActive (google.protobuf.Empty) returns (IsGameActiveResponse);
+}
+
+service TableService {
+  rpc StartGame(StartGameRequest) returns (StartGameResponse);
+  rpc ReceiveBall(ReceiveBallRequest) returns (ReceiveBallResponse);
+}
+
+message IsGameActiveResponse {
+  bool active = 1;
+}
+
+message NewMatchRequest {}
+
+message NewMatchResponse {
+  string message = 1;
+}
+
+message PingRequest {
+  int32 ball_power = 1;
+}
+
+message PingResponse {}
+
+message GetMatchRequest {}
+
+message GetMatchByIDRequest {
+  int32 id = 1;
+}
+
+message TestDBRequest {}
+
+message TestDBResponse {
+  string message = 1;
+}
+
+message StartGameRequest {}
+
+message StartGameResponse {
+  string message = 1;
+}
+
+message ReceiveBallRequest {
+  int32 ball_power = 1;
+  string from_player = 2;
+}
+
+message ReceiveBallResponse {}
+
+message Match {
+  int32 id = 1;
+  int32 match_number = 2;
+  google.protobuf.Timestamp start_time = 3;
+  google.protobuf.Timestamp end_time = 4;
+  string winner = 5;
+  repeated Turn turns = 6;
+}
+
+message Turn {
+  int32 id = 1;
+  int32 turn_number = 2;
+  google.protobuf.Timestamp time = 3;
+  string player = 4;
+  int32 ball_power = 5;
+  string routine_id = 6;
+  int32 match_number = 7;
+}
