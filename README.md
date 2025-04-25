@@ -1,11 +1,21 @@
-ก่อนทำการ Run 
-1. ให้ติดตั้ง Proto ก่อนตามลิงค์ YouTube นี้ https://www.youtube.com/watch?v=ES_GI-lmhEU
-2. สร้าง Data Base ชื่อ pingpong (ไม่ต้องสร้าง Tabel)
+# PingPong Game (Player A vs Player B)
 
-ขั้นตอนการติดตั้ง Proto
-1. make proto
-2. make build
+ระบบจำลองการแข่ง PingPong ผ่าน gRPC พร้อมบันทึกผลการแข่งขันลง MySQL
 
-สามารถ Run ที่Folder pingpong ได้เลย โดยใช้คำสั่ง make run
-การใช้งาน กด Space Bar เพื่อเริ่ม Match
-กด F2 เพื่อทดสอบการเชื่อมต่อกับ Data Base
+## ก่อนเริ่ม
+
+1. **ติดตั้ง Proto Compiler**
+   - ตามลิงค์ YouTube นี้:  
+     [ติดตั้ง Protobuf](https://www.youtube.com/watch?v=ES_GI-lmhEU)
+
+2. **สร้างฐานข้อมูล MySQL**
+   - ชื่อฐานข้อมูล: `pingpong`
+   - ไม่ต้องสร้างตาราง (สร้างให้อัตโนมัติตอนรัน)
+
+## วิธีใช้
+
+1. เปิดTerminal ที่โฟลเดอร์ `pingpong`
+2. รันคำสั่ง:
+
+   ```bash
+   make run
